@@ -1,0 +1,27 @@
+{
+  "name": "shopper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "workspaces": [
+    "./back",
+    "./front"
+  ],
+  "scripts": {
+    "front:dev": "npm run dev -w front",
+    "back:dev": "npm run dev -w back",
+    "back:build": "npm run build -w back",
+    "back:start": "npm run start -w back"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "prettier": "^3.3.3"
+  }
+}
