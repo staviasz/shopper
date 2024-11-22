@@ -1,5 +1,5 @@
 export type OptionsDriver = {
-  id?: string;
+  id: number;
   ratePerKm: number;
   minimumKm: number;
 };

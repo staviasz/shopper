@@ -53,17 +53,18 @@ export class EstimateRideUsecase extends Usecase<Input, Output> {
 
   private async getDrivers(distanceKm: number): Promise<Driver[]> {
     const drivers = await this.dbClient.driver.findMany({
-      where: { options: { minimumKm: { lte: distanceKm } } },
+      where: { OptionDriver: { minimumKm: { lte: distanceKm } } },
       select: {
         id: true,
         firstName: true,
         lastName: true,
         description: true,
-        car: true,
-        options: true,
-        rates: true,
+        Car: true,
+        OptionDriver: true,
+        Rating: true,
       },
     });
+
     return drivers;
   }
 
@@ -73,9 +74,9 @@ export class EstimateRideUsecase extends Usecase<Input, Output> {
         id: driver.id,
         name: `${driver.firstName} ${driver.lastName}`,
         description: driver.description,
-        vehicle: `${driver.car.make} ${driver.car.model} ${driver.car.year} ${driver.car.color} ${driver.car.description}`,
-        review: { rating: driver.rates[0].rate, comment: driver.rates[0].comment },
-        value: (driver.options.ratePerKm / 100) * distanceKm,
+        vehicle: `${driver.Car?.make} ${driver.Car?.model} ${driver.Car?.year} ${driver.Car?.color} ${driver.Car?.description}`,
+        review: { rating: driver.Rating[0].rate, comment: driver.Rating[0].comment },
+        value: (driver.OptionDriver?.ratePerKm! / 100) * distanceKm,
       };
     });
   }

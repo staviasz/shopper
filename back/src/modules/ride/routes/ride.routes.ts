@@ -11,7 +11,7 @@ router.setPostRoute({
   controller: makeEstimateRideController(),
 });
 
-router.setPostRoute({
+router.setPatchRoute({
   path: '/confirm',
   controller: makeConfirmRideController(),
 });

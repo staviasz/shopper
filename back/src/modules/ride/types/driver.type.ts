@@ -1,11 +1,11 @@
-import { Car, OptionsDriver, Rate } from '.';
+import { Car, OptionsDriver, Rate } from '@/modules/ride/types';
 
 export type Driver = {
-  id?: string;
+  id: number;
   firstName: string;
   lastName: string;
   description: string;
-  car: Car;
-  options: OptionsDriver;
-  rates: Rate[];
+  Car: Car | null;
+  OptionDriver: OptionsDriver | null;
+  Rating: Rate[];
 };

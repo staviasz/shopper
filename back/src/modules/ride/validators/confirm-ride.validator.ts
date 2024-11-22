@@ -1,3 +1,4 @@
+import { CustomHttpError } from '@/main/errors/custom-http.erros';
 import { Validator } from '@/main/validator/validator';
 
 type Input = {
@@ -5,10 +6,12 @@ type Input = {
   origin: string;
   destination: string;
   driver: {
-    id: string;
+    id: number;
     name: string;
   };
   distance: number;
+  duration: string;
+  value: number;
 };
 
 type Output = {
@@ -16,63 +19,88 @@ type Output = {
   origin: string;
   destination: string;
   driver: {
-    id: string;
+    id: number;
     name: string;
   };
   distance: number;
+  duration: string;
+  value: number;
 };
 
 export class ConfirmRideValidator extends Validator<Input, Output> {
   validate(data: Input): Output {
-    const { customer_id, destination, origin, driver, distance } = data;
+    this.clearErrors();
+    const { customer_id, destination, origin, driver, distance, duration, value } = data;
 
     this.validateFieldsString({
       customer_id,
       destination,
       origin,
-      driverId: driver.id,
-      driverName: driver.name,
+      driver: {
+        name: driver.name,
+      },
+      duration,
     });
 
-    this.validateFieldsNumber({ distance });
+    this.validateFieldsNumber({ distance, driver: { id: driver.id }, value });
     this.validateRequiredFields(data);
     this.validateFieldsIsDifferent(origin, destination);
 
     const errors = this.getErrors();
     if (errors) {
-      throw new Error(errors);
+      throw new CustomHttpError(400, errors);
     }
 
-    return { customerId: customer_id, origin, destination, driver, distance };
+    return { customerId: customer_id, origin, destination, driver, distance, duration, value };
   }
 
   private validateFieldsString(data: Record<string, any>): void {
-    Object.entries(data).forEach(([key, value]) => {
-      if (typeof value !== 'string') {
-        this.setError(key, 'field must be a string');
-      }
-    });
+    this.baseValidateFields(
+      data,
+      (key, value) => typeof value !== 'string',
+      'field must be a string',
+    );
   }
   private validateFieldsNumber(data: Record<string, any>): void {
-    Object.entries(data).forEach(([key, value]) => {
-      if (typeof value !== 'number') {
-        this.setError(key, 'field must be a number');
-      }
-    });
+    this.baseValidateFields(
+      data,
+      (key, value) => typeof value !== 'number',
+      'field must be a number',
+    );
   }
 
   private validateRequiredFields(data: Record<string, any>): void {
-    Object.entries(data).forEach(([key, value]) => {
-      let valueFormat = typeof value === 'string' ? value.trim() : value;
-      if (!valueFormat) {
-        this.setError(key, 'field is required');
-      }
-    });
+    this.baseValidateFields(
+      data,
+      (key, value) => {
+        const v = typeof value === 'string' ? value.trim() : value;
+        return !v;
+      },
+      'field is required',
+    );
   }
 
   private validateFieldsIsDifferent(origin: string, destination: string): void {
     if (origin.replace(/\s/g, '') === destination.replace(/\s/g, '')) {
       this.setError('origin and destination', 'origin and destination cannot be the same');
     }
+  }
+
+  private baseValidateFields(
+    data: Record<string, any>,
+    verification: (key: string, value: any) => boolean,
+    message: string,
+  ): void {
+    Object.entries(data).forEach(([key, value]) => {
+      if (typeof value === 'object' || !value) {
+        !value || Object.keys(value).length === 0
+          ? this.setError(key, 'is required')
+          : this.baseValidateFields(value, verification, message);
+        return;
+      }
+      if (verification(key, value)) {
+        this.setError(key, message);
+      }
+    });
   }
 }

@@ -29,7 +29,11 @@ export class Routes {
     this.router.get(`${this.basePath}${path}`, ...(middlewares || []), controller.execute);
   }
 
-  public setDeleteRoute(path: string, controller: any, middlewares?: any[]): void {
+  public setDeleteRoute({ path, controller, middlewares }: RouterOptions): void {
     this.router.delete(`${this.basePath}${path}`, ...(middlewares || []), controller.execute);
+  }
+
+  public setPatchRoute({ path, controller, middlewares }: RouterOptions): void {
+    this.router.patch(`${this.basePath}${path}`, ...(middlewares || []), controller.execute);
   }
 }

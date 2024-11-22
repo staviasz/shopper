@@ -8,50 +8,65 @@ datasource db {
 }
 
 model Driver {
-  id          String @id @default(uuid())
-  firstName   String @db.VarChar(50) @map("first_name")
-  lastName    String @db.VarChar(100) @map("last_name")
-  description String @db.Text
-
-  carId   String   @unique @map("car_id")
-  car     Car      @relation(fields: [carId], references: [id])
-  rates   Rating[]
-  optionsId String @unique @map("options_id")
-  options OptionDriver @relation(fields: [optionsId], references: [id])
+  id           Int           @id @default(autoincrement())
+  firstName    String        @map("first_name") @db.VarChar(50)
+  lastName     String        @map("last_name") @db.VarChar(100)
+  description  String        @db.Text
+  Car          Car?
+  Rating       Rating[]
+  OptionDriver OptionDriver?
 
   @@map("driver")
+  Rides Rides[]
 }
 
 model Car {
-  id          String @id @default(uuid())
+  id          Int    @id @default(autoincrement())
   make        String @db.VarChar(100)
   model       String @db.VarChar(100)
   year        Int
   color       String @db.VarChar(50)
   description String @db.Text
 
-  driver Driver?
+  driverId Int    @unique @map("driver_id")
+  driver   Driver @relation(fields: [driverId], references: [id])
 
   @@map("car")
 }
 
 model Rating {
-  id      String @id @default(uuid())
+  id      Int    @id @default(autoincrement())
   rate    Int
   comment String @db.Text
 
+  driverId Int    @map("driver_id")
   driver   Driver @relation(fields: [driverId], references: [id])
-  driverId String @map("driver_id")
 
   @@map("rating")
 }
 
 model OptionDriver {
-  id              String @id @default(uuid())
-  ratePerKm       Int @map("rate_per_km")
+  id        Int @id @default(autoincrement())
+  ratePerKm Int @map("rate_per_km")
   minimumKm Int @map("minimum_distance")
- 
-  driver Driver?
+
+  driverId Int    @unique @map("driver_id")
+  driver   Driver @relation(fields: [driverId], references: [id])
 
   @@map("option_driver")
+}
+
+
+model Rides {
+  id          Int    @id @default(autoincrement())
+  date        DateTime @default(now())
+  origin      String
+  destination String
+  distance    Int
+  duration String
+  value       Int
+
+  customerId  String @map("customer_id")
+  driverId    Int    @map("driver_id")
+  driver      Driver @relation(fields: [driverId], references: [id])
 }

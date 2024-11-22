@@ -1,18 +1,18 @@
 -- CreateTable
 CREATE TABLE "driver" (
-    "id" TEXT NOT NULL,
+    "id" SERIAL NOT NULL,
     "first_name" VARCHAR(50) NOT NULL,
     "last_name" VARCHAR(100) NOT NULL,
     "description" TEXT NOT NULL,
-    "car_id" TEXT NOT NULL,
-    "options_id" TEXT NOT NULL,
+    "car_id" INTEGER NOT NULL,
+    "options_id" INTEGER NOT NULL,
 
     CONSTRAINT "driver_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "car" (
-    "id" TEXT NOT NULL,
+    "id" SERIAL NOT NULL,
     "make" VARCHAR(100) NOT NULL,
     "model" VARCHAR(100) NOT NULL,
     "year" INTEGER NOT NULL,
@@ -24,17 +24,17 @@ CREATE TABLE "car" (
 
 -- CreateTable
 CREATE TABLE "rating" (
-    "id" TEXT NOT NULL,
+    "id" SERIAL NOT NULL,
     "rate" INTEGER NOT NULL,
     "comment" TEXT NOT NULL,
-    "driver_id" TEXT NOT NULL,
+    "driver_id" INTEGER NOT NULL,
 
     CONSTRAINT "rating_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "option_driver" (
-    "id" TEXT NOT NULL,
+    "id" SERIAL NOT NULL,
     "rate_per_km" INTEGER NOT NULL,
     "minimum_distance" INTEGER NOT NULL,
 

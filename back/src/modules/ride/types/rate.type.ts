@@ -1,5 +1,5 @@
 export type Rate = {
-  id?: string;
+  id: number;
   rate: number;
   comment: string;
 };
