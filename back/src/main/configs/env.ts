@@ -1,6 +1,8 @@
 import dotenv from 'dotenv';
+import path, { join } from 'path';
 
-dotenv.config({ path: '../.env' });
+const pathDir = path.resolve(join(__dirname, '../../../../.env'));
+dotenv.config({ path: pathDir });
 
 export const env = {
   port: process.env.BACK_PORT,

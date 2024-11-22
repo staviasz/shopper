@@ -1,12 +1,32 @@
-import express from 'express';
-import { env } from './configs/env';
+import { env } from '@/main/configs/env';
+import { routesRide } from '@/modules/ride';
+import cors from 'cors';
+import express, { type Express } from 'express';
 
-const app = express();
+class App {
+  private server: Express;
+  constructor() {
+    this.server = express();
+    this.middlewares();
+    this.routes();
+  }
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+  private middlewares(): void {
+    this.server.use(cors());
+    this.server.use(express.urlencoded({ extended: true }));
+    this.server.use(express.json());
+  }
 
-app.listen(env.port, () => {
-  console.log(`App listening on port ${env.port}`);
-});
+  private routes(): void {
+    this.server.use(routesRide);
+  }
+
+  public start(): void {
+    this.server.listen(env.port, () => {
+      console.log(`Server is running on port ${env.port}`);
+    });
+  }
+}
+
+const app = new App();
+app.start();

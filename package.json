@@ -11,7 +11,10 @@
     "front:dev": "npm run dev -w front",
     "back:dev": "npm run dev -w back",
     "back:build": "npm run build -w back",
-    "back:start": "npm run start -w back"
+    "back:start": "npm run start -w back",
+    "prisma:migrate": "npm run prisma:migrate -w back",
+    "prisma:seed": "npm run prisma:seed -w back",
+    "prisma:deploy": "npm run prisma:deploy -w back"
   },
   "keywords": [],
   "author": "",
