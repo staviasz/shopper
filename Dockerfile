@@ -4,8 +4,8 @@ WORKDIR /app
 
 COPY package.json ./
 
-RUN npm install
-
 COPY . .
 
 USER node
+
+CMD ["sh", "-c", "npm install && npm run dev"]

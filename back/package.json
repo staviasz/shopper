@@ -6,19 +6,23 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "dev": "ts-node-dev --respawn --transpile-only -r tsconfig-paths/register src/main.ts",
+    "dev": "npm run init && ts-node-dev --respawn --transpile-only -r tsconfig-paths/register src/main.ts",
     "build": "tsc && tsc-alias",
     "start": "node dist/main.js",
     "prisma:migrate": "dotenv -e ../.env -- npx prisma migrate dev",
     "prisma:deploy": "dotenv -e ../.env -- npx prisma db push",
-    "prisma:seed": "dotenv -e ../.env -- ts-node src/main/infra/prisma/seeds/driver.seed.ts"
+    "prisma:seed": "dotenv -e ../.env -- ts-node src/main/infra/prisma/seeds/driver.seed.ts",
+    "prisma:generate": "dotenv -e ../.env -- npx prisma generate",
+    "init": "npm run prisma:generate && npm run prisma:deploy && npm run prisma:seed"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^5.22.0",
     "cors": "^2.8.5",
-    "express": "^4.21.1"
+    "express": "^4.21.1",
+    "ts-node-dev": "^2.0.0"
   },
   "devDependencies": {
     "@swc/jest": "^0.2.37",
@@ -33,7 +37,6 @@
     "jest": "^29.7.0",
     "prisma": "^5.22.0",
     "ts-node": "^10.9.2",
-    "ts-node-dev": "^2.0.0",
     "tsc-alias": "^1.8.10",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.6.3"

@@ -1,11 +1,19 @@
-import { makeEstimateRideController } from '@/modules/ride/factories/controllers/estimate-ride.controller.factory';
+import {
+  makeConfirmRideController,
+  makeEstimateRideController,
+} from '@/modules/ride/factories/controllers';
 import { Routes } from './routes';
 
 const router = new Routes('/ride');
 
 router.setPostRoute({
-  path: '/',
+  path: '/estimate',
   controller: makeEstimateRideController(),
+});
+
+router.setPostRoute({
+  path: '/confirm',
+  controller: makeConfirmRideController(),
 });
 
 export const routesRide = router.getRoutes();

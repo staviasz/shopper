@@ -10,11 +10,13 @@
   "scripts": {
     "front:dev": "npm run dev -w front",
     "back:dev": "npm run dev -w back",
+    "dev": "npm run dev -w back & npm run dev -w front",
     "back:build": "npm run build -w back",
     "back:start": "npm run start -w back",
     "prisma:migrate": "npm run prisma:migrate -w back",
     "prisma:seed": "npm run prisma:seed -w back",
-    "prisma:deploy": "npm run prisma:deploy -w back"
+    "prisma:deploy": "npm run prisma:deploy -w back",
+    "prisma:generate": "npm run prisma:generate -w back"
   },
   "keywords": [],
   "author": "",

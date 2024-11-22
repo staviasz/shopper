@@ -1,27 +1,17 @@
 version: '3.7'
 
 services:
-  back:
+  app:
     build: .
     ports:
       - '8080:3001'
-    command: npm run back:dev
+      - '80:5173'
     environment:
       DATABASE_URL: postgres://postgres:postgres@db:5432/shopper
     volumes:
       - .:/app
     depends_on:
       - db
-
-  front:
-    build: .
-    ports:
-      - '80:5173'
-    command: npm run front:dev
-    volumes:
-      - .:/app
-    depends_on:
-      - back
 
   db:
     image: postgres
