@@ -1,5 +1,5 @@
+import { Controller } from '@/main/app';
 import { ok } from '@/main/helpers/http.helpers';
-import { Controller } from '@/modules/ride/controllers/';
 import { ConfirmRideUsecase } from '@/modules/ride/usecases';
 import { ConfirmRideValidator } from '@/modules/ride/validators/';
 import { Request, Response } from 'express';

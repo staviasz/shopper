@@ -1,6 +1,6 @@
+import { Usecase } from '@/main/app';
 import { DbClientType } from '@/main/infra/helper/prisma.helper';
 import { ApiRoutesService } from '@/modules/ride/services/api-routes.service';
-import { Usecase } from '@/modules/ride/usecases/usecase';
 import { Driver } from '../types';
 
 type Input = {

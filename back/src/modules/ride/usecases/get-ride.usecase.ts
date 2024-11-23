@@ -1,5 +1,5 @@
+import { Usecase } from '@/main/app';
 import { DbClientType } from '@/main/infra/helper/prisma.helper';
-import { Usecase } from '@/modules/ride/usecases/usecase';
 
 type Input = {
   customerId: string;

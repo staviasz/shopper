@@ -1,8 +1,8 @@
+import { Controller } from '@/main/app';
 import { ok } from '@/main/helpers/http.helpers';
-import { Controller } from '@/modules/ride/controllers/controller';
+import { GetRidesUsecase } from '@/modules/ride/usecases';
 import { GetRidesValidator } from '@/modules/ride/validators';
 import { Request, Response } from 'express';
-import { GetRidesUsecase } from '../usecases';
 
 export class GetRidesByCustomerController extends Controller {
   constructor(

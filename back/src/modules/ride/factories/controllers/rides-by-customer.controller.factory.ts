@@ -1,4 +1,5 @@
-import { Controller, GetRidesByCustomerController } from '@/modules/ride/controllers';
+import { Controller } from '@/main/app';
+import { GetRidesByCustomerController } from '@/modules/ride/controllers';
 import { GetRidesValidator } from '@/modules/ride/validators';
 import { makeGetRidesUsecase } from '../usecases';
 

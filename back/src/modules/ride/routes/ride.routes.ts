@@ -1,9 +1,9 @@
+import { Routes } from '@/main/app';
 import {
   makeConfirmRideController,
   makeEstimateRideController,
   makeRidesByCustomerController,
 } from '@/modules/ride/factories/controllers';
-import { Routes } from './routes';
 
 const router = new Routes('/ride');
 

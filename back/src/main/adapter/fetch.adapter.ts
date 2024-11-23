@@ -9,8 +9,6 @@ import { badRequest } from '@/main/helpers/http.helpers';
 
 export class FetchAdapter implements ExternalRequestsContract {
   async request({ url, method, headers, body }: RequestOptions): Promise<Response> {
-    console.log(this.buildHeaders(headers));
-
     const response = await fetch(url, {
       method,
       headers: this.buildHeaders(headers),
@@ -18,8 +16,6 @@ export class FetchAdapter implements ExternalRequestsContract {
     });
 
     const data = await response.json();
-
-    console.log(data);
 
     if (!response.ok) {
       throw new CustomHttpError(response.status, response.statusText);

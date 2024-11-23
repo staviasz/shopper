@@ -1,6 +1,7 @@
-import { ConfirmRideController, Controller } from '@/modules/ride/controllers';
-import { ConfirmRideValidator } from '../../validators';
-import { makeConfirmRideUsecase } from '../usecases';
+import { Controller } from '@/main/app';
+import { ConfirmRideController } from '@/modules/ride/controllers';
+import { makeConfirmRideUsecase } from '@/modules/ride/factories/usecases';
+import { ConfirmRideValidator } from '@/modules/ride/validators';
 
 export const makeConfirmRideController = (): Controller => {
   const validator = new ConfirmRideValidator();

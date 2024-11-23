@@ -1,6 +1,6 @@
+import { Usecase } from '@/main/app';
 import { CustomHttpError } from '@/main/errors/custom-http.erros';
 import { DbClientType } from '@/main/infra/helper/prisma.helper';
-import { Usecase } from './usecase';
 
 type Input = {
   customerId: string;

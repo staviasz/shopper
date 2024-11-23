@@ -1,6 +1,7 @@
-import { badRequest } from '@/main/helpers/http.helpers';
-import { Controller } from '@/modules/ride/controllers';
+import { ok } from '@/main/helpers/http.helpers';
+import { Controller } from '@/main/app';
 import { EstimateRideUsecase } from '@/modules/ride/usecases';
+import { EstimateRidesValidator } from '@/modules/ride/validators/estimate-ride.validator';
 import { Request, Response } from 'express';
 
 type ReqBody = {
@@ -10,34 +11,22 @@ type ReqBody = {
 };
 
 export class EstimateRideController extends Controller {
-  constructor(private readonly usecase: EstimateRideUsecase) {
+  constructor(
+    private readonly usecase: EstimateRideUsecase,
+    private readonly validator: EstimateRidesValidator,
+  ) {
     super();
     this.execute = this.execute.bind(this);
   }
   async execute(req: Request, res: Response): Promise<void> {
-    const { isValid, origin, destination, customerId } = this.validateRequest(req, res);
-    if (!isValid) return;
+    try {
+      const { origin, destination, customerId } = this.validator.validate(req.body);
 
-    const result = await this.usecase.execute({ origin, destination, customerId });
+      const result = await this.usecase.execute({ origin, destination, customerId });
 
-    res.status(200).json(result);
-  }
-
-  private validateRequest(req: Request, res: Response): { isValid: boolean } & ReqBody {
-    const { origin, destination, customer_id: customerId } = req.body;
-    let isValid = true;
-
-    if (!origin || !destination || !customerId) {
-      isValid = false;
-      badRequest(res, 'Fields origin, destination and customerId are required');
-      return { isValid } as any;
+      ok(res, result);
+    } catch (error) {
+      this.formattedErrors(error, res);
     }
-
-    if (origin.replace(/\s/g, '') === destination.replace(/\s/g, '')) {
-      isValid = false;
-      badRequest(res, 'Origin and destination cannot be the same');
-    }
-
-    return { isValid, origin, destination, customerId };
   }
 }
