@@ -17,8 +17,13 @@
   },
   "plugins": ["@typescript-eslint", "prettier"],
   "rules": {
-    "prettier/prettier": "error",
     "@typescript-eslint/no-unused-vars": "warn",
-    "no-console": "warn"
+    "no-console": "warn",
+    "prettier/prettier": [
+      "error",
+      {
+        "prettierOptionsFile:": "../.prettierrc"
+      }
+    ]
   }
 }
