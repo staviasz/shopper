@@ -37,12 +37,12 @@ export class ConfirmRideValidator extends Validator<Input, Output> {
       destination,
       origin,
       driver: {
-        name: driver.name,
+        name: driver?.name,
       },
       duration,
     });
 
-    this.validateFieldsNumber({ distance, driver: { id: driver.id }, value });
+    this.validateFieldsNumber({ distance, driver: { id: driver?.id }, value });
     this.validateRequiredFields(data);
     this.validateFieldsIsDifferent(origin, destination);
 
@@ -81,7 +81,7 @@ export class ConfirmRideValidator extends Validator<Input, Output> {
   }
 
   private validateFieldsIsDifferent(origin: string, destination: string): void {
-    if (origin.replace(/\s/g, '') === destination.replace(/\s/g, '')) {
+    if (origin?.replace(/\s/g, '') === destination?.replace(/\s/g, '')) {
       this.setError('origin and destination', 'origin and destination cannot be the same');
     }
   }

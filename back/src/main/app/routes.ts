@@ -1,5 +1,5 @@
+import { Controller } from '@/main/app';
 import { Router } from 'express';
-import { Controller } from '../../../main/app/controller';
 
 type RouterOptions = {
   path: string;

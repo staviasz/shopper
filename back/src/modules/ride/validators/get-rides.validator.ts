@@ -15,6 +15,7 @@ export class GetRidesValidator extends Validator<Input, Output> {
   validate(data: Input): Output {
     this.clearErrors();
     const { customer_id, driver_id } = data;
+    console.log(data);
 
     this.validateRequiredFields({ customer_id });
     const driverId = this.validateFieldsNumber({ driver_id });
@@ -39,7 +40,7 @@ export class GetRidesValidator extends Validator<Input, Output> {
   }
 
   private validateRequiredFields(data: Record<string, any>): void {
-    if (!data.customer_id.trim()) {
+    if (!data.customer_id?.trim()) {
       this.setError('customer_id', 'field is required');
     }
   }

@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client';
 
 export type DbClientType = PrismaClient;
 
-class DbClient {
+export class DbClient {
   private prisma!: DbClientType;
 
   get client(): DbClientType {
@@ -15,6 +15,7 @@ class DbClient {
 
   public disconnect(): void {
     this.prisma.$disconnect();
+    this.prisma = undefined as unknown as DbClientType;
   }
 }
 

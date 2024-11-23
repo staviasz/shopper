@@ -50,7 +50,7 @@ export class EstimateRidesValidator extends Validator<Input, Output> {
   }
 
   private validateFieldsIsDifferent(origin: string, destination: string): void {
-    if (origin.replace(/\s/g, '') === destination.replace(/\s/g, '')) {
+    if (origin?.replace(/\s/g, '') === destination?.replace(/\s/g, '')) {
       this.setError('origin and destination', 'origin and destination cannot be the same');
     }
   }
