@@ -1,0 +1,64 @@
+@import './variables.css';
+
+.card-driver {
+  position: relative;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid var(--primary-color);
+  border-radius: 3px;
+  padding: 5px;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.name {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+}
+
+.vehicle {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  gap: 5px;
+}
+
+.vehicle-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.price {
+  position: absolute;
+  right: 5px;
+  top: 0;
+}
+
+.review {
+  width: 100%;
+  gap: 5px;
+  font-size: 12px;
+  border-radius: 3px;
+  background-color: var(--blue-color);
+  filter: brightness(180%);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.select-driver {
+  color: var(--white-color);
+  background-color: rgb(66, 136, 66);
+  max-height: 40px;
+  width: 90%;
+  margin-top: 8px;
+}
+
+.review-and-select-container {
+  display: grid;
+  column-gap: 8px;
+  grid-template-columns: 80% 20%;
+  align-items: center;
+}
