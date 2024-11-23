@@ -1,5 +1,5 @@
 import { CustomHttpError } from '@/main/errors/custom-http.erros';
-import { DbClientType } from '@/main/infra/db/prisma.helper';
+import { DbClientType } from '@/main/infra/helper/prisma.helper';
 import { Usecase } from './usecase';
 
 type Input = {

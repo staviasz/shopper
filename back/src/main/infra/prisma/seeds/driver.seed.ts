@@ -1,5 +1,7 @@
-import { DbClient } from '../../db/prisma.helper';
-const prisma = DbClient.connect();
+import dbClient from '../../helper/prisma.helper';
+
+dbClient.connect();
+const prisma = dbClient.client;
 
 const drivers = [
   {

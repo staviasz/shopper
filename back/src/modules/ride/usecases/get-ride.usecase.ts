@@ -1,4 +1,4 @@
-import { DbClientType } from '@/main/infra/db/prisma.helper';
+import { DbClientType } from '@/main/infra/helper/prisma.helper';
 import { Usecase } from '@/modules/ride/usecases/usecase';
 
 type Input = {

@@ -1,4 +1,4 @@
-import { DbClientType } from '@/main/infra/db/prisma.helper';
+import { DbClientType } from '@/main/infra/helper/prisma.helper';
 import { ApiRoutesService } from '@/modules/ride/services/api-routes.service';
 import { Usecase } from '@/modules/ride/usecases/usecase';
 import { Driver } from '../types';
@@ -31,7 +31,6 @@ export class EstimateRideUsecase extends Usecase<Input, Output> {
       origin: dto.origin,
       destination: dto.destination,
     });
-    console.log(origin);
 
     const distanceKm = distanceMeters / 1000;
 

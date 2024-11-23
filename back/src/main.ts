@@ -1,4 +1,5 @@
 import { env } from '@/main/configs/env';
+import '@/main/infra/helper/process-db.helper';
 import { routesRide } from '@/modules/ride';
 import cors from 'cors';
 import express, { type Express } from 'express';
@@ -21,12 +22,11 @@ class App {
     this.server.use(routesRide);
   }
 
-  public start(): void {
+  public async start(): Promise<void> {
     this.server.listen(env.port, () => {
       console.log(`Server is running on port ${env.port}`);
     });
   }
 }
-
 const app = new App();
 app.start();

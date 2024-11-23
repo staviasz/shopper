@@ -1,7 +1,7 @@
-import { DbClient } from '@/main/infra/db/prisma.helper';
+import dbClient from '@/main/infra/helper/prisma.helper';
 import { ConfirmRideUsecase } from '@/modules/ride/usecases';
 
 export const makeConfirmRideUsecase = () => {
-  const dbClient = DbClient.connect();
-  return new ConfirmRideUsecase(dbClient);
+  const db = dbClient.client;
+  return new ConfirmRideUsecase(db);
 };
