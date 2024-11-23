@@ -1,6 +1,7 @@
 import {
   makeConfirmRideController,
   makeEstimateRideController,
+  makeRidesByCustomerController,
 } from '@/modules/ride/factories/controllers';
 import { Routes } from './routes';
 
@@ -14,6 +15,11 @@ router.setPostRoute({
 router.setPatchRoute({
   path: '/confirm',
   controller: makeConfirmRideController(),
+});
+
+router.setGetRoute({
+  path: '/:customer_id',
+  controller: makeRidesByCustomerController(),
 });
 
 export const routesRide = router.getRoutes();

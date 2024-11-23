@@ -4,12 +4,6 @@ import { ConfirmRideUsecase } from '@/modules/ride/usecases';
 import { ConfirmRideValidator } from '@/modules/ride/validators/';
 import { Request, Response } from 'express';
 
-type ReqBody = {
-  origin: string;
-  destination: string;
-  customerId: string;
-};
-
 export class ConfirmRideController extends Controller {
   constructor(
     private readonly validator: ConfirmRideValidator,
