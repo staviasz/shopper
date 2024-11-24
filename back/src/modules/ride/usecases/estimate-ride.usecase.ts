@@ -62,6 +62,7 @@ export class EstimateRideUsecase extends Usecase<Input, Output> {
         OptionDriver: true,
         Rating: true,
       },
+      orderBy: { OptionDriver: { ratePerKm: 'asc' } },
     });
 
     return drivers;
