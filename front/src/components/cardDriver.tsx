@@ -20,7 +20,9 @@ export default function CardDriver({ driver }: CardDriverProps) {
       <p className="price">R$ {value}</p>
       <div className="review-and-select-container">
         <div className="review">
-          <p className="rate">Ultima avaliação: {review.rating}</p>
+          <p className="rate">
+            <span>Última avaliação:</span> {review.rating}
+          </p>
           <p className="comment">{review.comment}</p>
         </div>
         <Button type="button" className="select-driver">

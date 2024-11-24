@@ -43,7 +43,7 @@
   font-size: 12px;
   border-radius: 3px;
   background-color: var(--blue-color);
-  filter: brightness(180%);
+  filter: brightness(160%);
   margin-top: 10px;
   font-style: italic;
 }
@@ -61,4 +61,14 @@
   column-gap: 8px;
   grid-template-columns: 80% 20%;
   align-items: center;
+  align-content: center;
+  justify-items: center;
+}
+
+.rate {
+  margin-bottom: 2px;
+}
+
+.rate > span {
+  font-size: 10px;
 }

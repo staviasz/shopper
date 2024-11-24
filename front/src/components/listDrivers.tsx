@@ -1,6 +1,6 @@
-import CardDriver from '@/components/cardDriver';
 import '@/styles/listDrivers.css';
 import { Driver } from '@/types/driver.type';
+import CardDriver from './cardDriver';
 
 interface ListDriversProps {
   drivers: Driver[];
