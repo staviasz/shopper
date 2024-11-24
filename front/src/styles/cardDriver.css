@@ -72,3 +72,11 @@
 .rate > span {
   font-size: 10px;
 }
+
+@media (max-width: 600px) {
+  .review-and-select-container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+}

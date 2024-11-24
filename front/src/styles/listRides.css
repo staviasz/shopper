@@ -1,11 +1,12 @@
-.list-drivers {
+.list-rides {
   background-color: var(--blue-color);
   filter: brightness(108%);
-  max-width: 800px;
-  height: 100%;
   width: 100%;
   border-radius: 8px;
   overflow: auto;
   border: 7px solid var(--blue-color);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  column-gap: 10px;
   row-gap: 3px;
 }

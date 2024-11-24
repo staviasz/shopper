@@ -1,10 +1,11 @@
-import OptionsDriver from '@/layout/optionsDriver';
+import FormEstimate from '@/components/formEstimate';
 
 function App() {
   return (
     <>
-      {/* <FormEstimate /> */}
-      <OptionsDriver />
+      <FormEstimate />
+      {/* <OptionsDriver /> */}
+      {/* <HistoryRides /> */}
     </>
   );
 }
