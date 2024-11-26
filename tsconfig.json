@@ -20,5 +20,12 @@
     "strictNullChecks": true,
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": true
-  }
+  },
+  "exclude": [
+    "**/node_modules",
+    "**/dist",
+    "**/test",
+    "**/tests",
+    "**/*.spec.ts",
+  ]
 }

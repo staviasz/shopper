@@ -5,7 +5,7 @@ import { Request, Response } from 'express';
 export abstract class Controller {
   abstract execute(req: Request, res: Response): Promise<void> | void;
 
-  protected formattedErrors(error: any, res: Response): void {
+  protected formattedErrors(error: any, res: Response): void {    
     if (error instanceof CustomHttpError === false) {
       serverError(res);
       return;

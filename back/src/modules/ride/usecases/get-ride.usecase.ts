@@ -31,7 +31,7 @@ export class GetRidesUsecase extends Usecase<Input, Output> {
 
     return {
       customer_id: dto.customerId,
-      rides: rides.map(r => {
+      rides: rides.map((r: any) => {
         return {
           id: r.id,
           date: r.date,

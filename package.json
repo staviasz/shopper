@@ -17,14 +17,13 @@
     "prisma:seed": "npm run prisma:seed -w back",
     "prisma:deploy": "npm run prisma:deploy -w back",
     "prisma:generate": "npm run prisma:generate -w back",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "start": "npm run start -w back & npm run start -w front",
+    "build": "npm run build -w back & npm run build -w front"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "dotenv": "^16.4.5"
-  },
   "devDependencies": {
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",

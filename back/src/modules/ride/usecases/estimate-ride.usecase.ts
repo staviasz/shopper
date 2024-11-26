@@ -28,7 +28,7 @@ export class EstimateRideUsecase extends Usecase<Input, Output> {
   ) {
     super();
   }
-  async execute(dto: Input): Promise<Output> {
+  async execute(dto: Input): Promise<Output> {    
     const { response, distanceMeters, origin, destination, duration } =
       await this.apiRoutesService.execute({
         origin: dto.origin,
