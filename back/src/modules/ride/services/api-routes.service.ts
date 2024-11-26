@@ -8,6 +8,7 @@ type Input = {
 
 type Output = {
   response: any;
+  duration: string;
   distanceMeters: number;
   polyline: string;
   origin: any;
@@ -32,6 +33,7 @@ export class ApiRoutesService {
 
     return {
       response: data,
+      duration: data.routes[0].localizedValues.duration.text,
       distanceMeters: data.routes[0].distanceMeters,
       polyline: data.routes[0].polyline.encodedPolyline,
       origin: data.routes[0].legs[0].startLocation.latLng,

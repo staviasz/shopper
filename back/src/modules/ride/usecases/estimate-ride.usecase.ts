@@ -15,6 +15,8 @@ type latLng = {
 type Output = {
   origin: latLng;
   destination: latLng;
+  distance: number;
+  duration: string;
   options: any;
   routeResponse: any;
 };
@@ -27,10 +29,11 @@ export class EstimateRideUsecase extends Usecase<Input, Output> {
     super();
   }
   async execute(dto: Input): Promise<Output> {
-    const { response, distanceMeters, origin, destination } = await this.apiRoutesService.execute({
-      origin: dto.origin,
-      destination: dto.destination,
-    });
+    const { response, distanceMeters, origin, destination, duration } =
+      await this.apiRoutesService.execute({
+        origin: dto.origin,
+        destination: dto.destination,
+      });
 
     const distanceKm = distanceMeters / 1000;
 
@@ -41,6 +44,8 @@ export class EstimateRideUsecase extends Usecase<Input, Output> {
         latitude: origin.latitude,
         longitude: origin.longitude,
       },
+      distance: distanceMeters,
+      duration,
       destination: {
         latitude: destination.latitude,
         longitude: destination.longitude,

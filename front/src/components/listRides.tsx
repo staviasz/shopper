@@ -1,15 +1,22 @@
 import '@/styles/listRides.css';
+import { RideDone } from '@/types/ride.type';
 import CardRide from './cardRide';
 
-const array = [1, 2, 3, 2, 2, 2, 2, 3, 3, 3, 33, 3, 1, 2, 3, 2, 2, 2, 2, 3, 3, 3, 33, 3];
-export default function ListHistory() {
+interface ListRidesProps {
+  rides: RideDone[];
+}
+export default function ListHistory({ rides }: ListRidesProps) {
   return (
     <ul className="list-rides">
-      {array.map(item => (
-        <li>
-          <CardRide />
-        </li>
-      ))}
+      {rides.length > 0 ? (
+        rides.map(item => (
+          <li>
+            <CardRide ride={item} />
+          </li>
+        ))
+      ) : (
+        <li className="no-itens">Nenhuma viagem encontrada </li>
+      )}
     </ul>
   );
 }

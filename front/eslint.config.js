@@ -28,6 +28,7 @@ export default tseslint.config(
           prettierOptionsFile: '../.prettierrc',
         },
       ],
+      '@typescript-eslint/no-explicit-any': 'off',
     },
   },
 );

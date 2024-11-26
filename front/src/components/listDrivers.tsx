@@ -1,19 +1,20 @@
+import { useRide } from '@/hooks/useRide';
 import '@/styles/listDrivers.css';
-import { Driver } from '@/types/driver.type';
 import CardDriver from './cardDriver';
 
-interface ListDriversProps {
-  drivers: Driver[];
-}
-
-export function ListDrivers({ drivers }: ListDriversProps) {
+export function ListDrivers() {
+  const { estimateRide } = useRide();
   return (
     <ul className="list-drivers">
-      {drivers.map(driver => (
-        <li>
-          <CardDriver key={driver.id} driver={driver} />
-        </li>
-      ))}
+      {estimateRide ? (
+        estimateRide.options.map(driver => (
+          <li>
+            <CardDriver key={driver.id} driver={driver} />
+          </li>
+        ))
+      ) : (
+        <li className="no-itens">Nenhum motorista encontrado </li>
+      )}
     </ul>
   );
 }

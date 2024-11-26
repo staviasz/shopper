@@ -12,6 +12,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noUncheckedSideEffectImports": true,
+    "noImplicitAny": false,
     "paths": {
       "@/*": ["./src/*"]
     }

@@ -1,4 +1,6 @@
 import vehicleIcon from '@/assets/modelo-de-carro-sedan.png';
+import { useRide } from '@/hooks/useRide';
+import { confirmRide } from '@/services/confirmRide.service';
 import '@/styles/cardDriver.css';
 import { Driver } from '@/types/driver.type';
 import Button from './button';
@@ -9,6 +11,29 @@ interface CardDriverProps {
 
 export default function CardDriver({ driver }: CardDriverProps) {
   const { name, description, vehicle, review, value } = driver;
+  const { setEstimateRide, estimateRide, setPage } = useRide();
+
+  const handleSelectDriver = async () => {
+    try {
+      await confirmRide({
+        customerId: estimateRide!.customerId,
+        origin: estimateRide!.origin,
+        destination: estimateRide!.destination,
+        driver: {
+          id: driver.id,
+          name: driver.name,
+        },
+        distance: estimateRide!.distance,
+        duration: estimateRide!.duration,
+        value: driver.value,
+      });
+      setEstimateRide(null);
+      setPage('historyRides');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <article className="card-driver">
       <h1 className="name">{name}</h1>
@@ -17,7 +42,7 @@ export default function CardDriver({ driver }: CardDriverProps) {
         <img className="vehicle-icon" src={vehicleIcon} />
         {vehicle}
       </p>
-      <p className="price">R$ {value}</p>
+      <p className="price">R$ {value.toFixed(2)}</p>
       <div className="review-and-select-container">
         <div className="review">
           <p className="rate">
@@ -25,7 +50,7 @@ export default function CardDriver({ driver }: CardDriverProps) {
           </p>
           <p className="comment">{review.comment}</p>
         </div>
-        <Button type="button" className="select-driver">
+        <Button type="button" className="select-driver" onclick={handleSelectDriver}>
           Escolher
         </Button>
       </div>

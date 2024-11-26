@@ -1,4 +1,5 @@
 .form-history {
+  position: relative;
   max-width: 800px;
   width: 100%;
   display: grid;
@@ -25,4 +26,10 @@
   .form-history {
     grid-template-columns: 100%;
   }
+}
+
+.form-history > .message-error {
+  position: absolute;
+  bottom: -23px;
+  color: red;
 }

@@ -1,5 +1,5 @@
-import { ok } from '@/main/helpers/http.helpers';
 import { Controller } from '@/main/app';
+import { ok } from '@/main/helpers/http.helpers';
 import { EstimateRideUsecase } from '@/modules/ride/usecases';
 import { EstimateRidesValidator } from '@/modules/ride/validators/estimate-ride.validator';
 import { Request, Response } from 'express';
@@ -24,7 +24,7 @@ export class EstimateRideController extends Controller {
 
       const result = await this.usecase.execute({ origin, destination, customerId });
 
-      ok(res, result);
+      ok(res, { ...result });
     } catch (error) {
       this.formattedErrors(error, res);
     }

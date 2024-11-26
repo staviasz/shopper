@@ -8,6 +8,7 @@ export abstract class Controller {
   protected formattedErrors(error: any, res: Response): void {
     if (error instanceof CustomHttpError === false) {
       serverError(res);
+      return;
     }
     switch (error.status) {
       case 400:
